@@ -1,7 +1,7 @@
 import Layer from "./layer";
 
 class Neuron {
-    value : number;
+    value : number = 0;
 
     //TODO добавить кол-во нейроннов в слое разделить на кол-во нейронов * 2
     adder = (previousLayer: Layer, arrayWeigth : number[]) : number => {

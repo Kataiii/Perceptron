@@ -3,7 +3,7 @@ import Weigth from "./weigth";
 
 
 class Layer{
-    arrayNeurons : Neuron[];
+    arrayNeurons : Neuron[] = [];
 
     constructor(countNeurons : number){
         for(let i = 0; i < countNeurons; i++){
@@ -13,7 +13,7 @@ class Layer{
 
     countingNeuronsInLayer = (previousLayer : Layer, weigths : Weigth) => {
         for(let i = 0; i < this.arrayNeurons.length; i++){
-            this.arrayNeurons[i].value = this.arrayNeurons[i].activationFunction(previousLayer, weigths[i]);
+            this.arrayNeurons[i].value = this.arrayNeurons[i].activationFunction(previousLayer, weigths.arrayWeigth[i]);
         }
     }
 }

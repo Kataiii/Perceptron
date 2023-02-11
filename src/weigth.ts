@@ -1,5 +1,5 @@
 class Weigth{
-    arrayWeigth : number[][];
+    arrayWeigth : number[][] = [];
 
     constructor(previousLayerLength: number, currentLayerLength : number){
         for(let i : number = 0; i < previousLayerLength; i++){

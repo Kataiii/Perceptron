@@ -3,8 +3,8 @@ import Weigth from "./weigth";
 
 
 class Perceptron{
-    arrayLayers : Layer[];
-    arrayWeigths : Weigth[];
+    arrayLayers : Layer[] = [];
+    arrayWeigths : Weigth[] = [];
 
     //TODO дописать конструктор 
     constructor(countNeuronsInLayers : number[]){
