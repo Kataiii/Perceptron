@@ -1,17 +1,20 @@
-class Neuron {
-    value: number;
-    arrayWeigth : number[];
+import Layer from "./layer";
 
-    adder = (previousLayer: Layer) : number => {
+class Neuron {
+    value : number;
+    //index : number;
+    //arrayWeigth : number[];
+
+    adder = (previousLayer: Layer, arrayWeigth : number[]) : number => {
         let sum : number = 0;
         for(let i : number = 0; i < previousLayer.arrayNeurons.length; i++){
-            sum = sum + previousLayer.arrayNeurons[i] * this.arrayWeigth[i];
+            sum = sum + previousLayer.arrayNeurons[i].value * arrayWeigth[i];
         }
         return sum;
     }
 
-    activationFunction = (previousLayer: Layer) => {
-        this.value = 1 / (1 + Math.pow(Math.E, -this.adder(previousLayer)));
+    activationFunction = (previousLayer: Layer, arrayWeigth : number[]) : number => {
+        return 1 / (1 + Math.pow(Math.E, -this.adder(previousLayer, arrayWeigth)));
     }
 }
 
