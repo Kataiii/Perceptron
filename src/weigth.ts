@@ -1,5 +1,4 @@
 class Weigth{
-    //arrayWeigth : number[][] = [];
     arrayWeigth : number[][];
 
     constructor(previousLayerLength: number, currentLayerLength : number){

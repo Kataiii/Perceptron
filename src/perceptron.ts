@@ -6,7 +6,6 @@ class Perceptron{
     arrayLayers : Layer[] = [];
     arrayWeigths : Weigth[] = [];
 
-    //TODO дописать конструктор 
     constructor(countNeuronsInLayers : number[]){
         for(let i : number = 0; i < countNeuronsInLayers.length; i++){
             this.arrayLayers.push(new Layer(countNeuronsInLayers[i]));

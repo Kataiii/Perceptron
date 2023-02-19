@@ -2,10 +2,47 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
     <title>Perceptron</title>
 </head>
 <body>
-    <h2 id="App"></h2>
+    <div id="App">
+        <h1>Прогноз успеваемости студента</h1>
+        <div id="div-form">
+            <p>Курс обучения 
+                <select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>магистратура 1</option>
+                    <option>магистратура 2</option>
+                </select>
+            </p>
+            <div>
+                <p>Процент посещаемости: </p>
+                <input type="text"/>
+            </div>
+            <div>
+                <p>Дисциплинированность: </p>
+                <select>
+                    <option>Отсутствие дисциплинарных взысканий</option>
+                    <option>Есть несколько дисциплинарных взысканий</option>
+                    <option>Иногда получает дисциплинарные взыскания</option>
+                    <option>Дисциплинарные взыскания получает часто</option>
+                </select>
+            </div>
+            <p>Успеваемость по профильным предметам (%) <input type="text"/></p>
+            <p>Успеваемость по дополнительным предметам (%) <input type="text"/></p>
+            <p>Средняя оценка по прошлой сессии <input type="text"/></p>
+            <p>Наличие в прошлой сессии пересдач <input type="checkbox"/></p>
+            <p>Наличие в прошлой сессии троек <input type="checkbox"/></p>
+            <p>Наличие в прошлой сессии четверок <input type="checkbox"/></p>
+            <p>Наличие опозданий в сдачах проектов и курсовых <input type="checkbox"/></p>
+        </div>
+        <div id="div-results"></div>
+    </div>
     <script src="dist/bundle.js"></script>
 </body>
 </html>
