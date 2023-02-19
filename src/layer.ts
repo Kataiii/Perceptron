@@ -6,6 +6,8 @@ class Layer{
     arrayNeurons : Neuron[] = [];
 
     constructor(countNeurons : number){
+        this.arrayNeurons = new Array<Neuron>(countNeurons);
+
         for(let i = 0; i < countNeurons; i++){
             this.arrayNeurons[i] = new Neuron();
         }

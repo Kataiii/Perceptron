@@ -2,6 +2,7 @@ import Perceptron from "./perceptron";
 
 let perceptron : Perceptron = new Perceptron([11, 9, 7, 5]);
 console.log("--------Perseptron created---------");
+console.log(perceptron);
 console.log("Neurons:\n");
 for(let i : number = 0; i < perceptron.arrayLayers.length; i++){
     let str : string = "";
@@ -12,7 +13,7 @@ for(let i : number = 0; i < perceptron.arrayLayers.length; i++){
     console.log(str + "\n");
 }
 
-perceptron.countingHiddenLayers();
+//perceptron.countingHiddenLayers();
 console.log("Neurons:\n");
 for(let i : number = 0; i < perceptron.arrayLayers.length; i++){
     let str : string = "";
