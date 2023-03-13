@@ -14,7 +14,7 @@ class Layer{
     }
 
     countingNeuronsInLayer = (previousLayer : Layer, weigths : Weigth) => {
-        for(let i = 0; i < this.arrayNeurons.length; i++){
+        for(let i = 0; i < this.arrayNeurons.length - 1; i++){
             this.arrayNeurons[i].value = this.arrayNeurons[i].activationFunction(previousLayer, weigths.arrayWeigth[i]);
         }
     }

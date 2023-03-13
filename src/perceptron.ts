@@ -17,19 +17,11 @@ class Perceptron{
         }
     }
 
-    // countingIncommingLayer = () => {
-
-    // }
-
     countingHiddenLayers = () => {
         for(let i : number = 1; i < this.arrayLayers.length; i++){
-            this.arrayLayers[i].countingNeuronsInLayer(this.arrayLayers[i-1],this.arrayWeigths[i]);
+            this.arrayLayers[i].countingNeuronsInLayer(this.arrayLayers[i - 1],this.arrayWeigths[i - 1]);
         }
     }
-
-    // countingExitingLayer = () => {
-
-    // }
 }
 
 export default Perceptron;

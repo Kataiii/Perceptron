@@ -6,9 +6,7 @@ const arrayOutputs: string[] = ['Не сдаст - ',
                                 'Сдаст хорошо - ', 
                                 'Сдаст наотлично - '];
 let perceptron : Perceptron = new Perceptron([11, 9, 7, 5]);
-//console.log("--------Perseptron created---------");
-//console.log(perceptron);
-//console.log("Neurons:\n");
+
 for(let i : number = 0; i < perceptron.arrayLayers.length; i++){
     let str : string = "";
     for(let j : number = 0; j < perceptron.arrayLayers[i].arrayNeurons.length; j++){
@@ -18,8 +16,14 @@ for(let i : number = 0; i < perceptron.arrayLayers.length; i++){
     console.log(str + "\n");
 }
 
-//perceptron.countingHiddenLayers();
-//console.log("Neurons:\n");
+for(let i : number = 0; i < perceptron.arrayWeigths.length; i++){
+    let str : string = "";
+    for(let j : number = 0; j < perceptron.arrayWeigths[i].arrayWeigth.length; j++){
+        str += perceptron.arrayWeigths[i].arrayWeigth[j] + " ";
+        //console.log(perceptron.arrayLayers[i].arrayNeurons[j].value);
+    }
+    console.log(str + "\n");
+}
 
 let divResult : HTMLElement | null = document.getElementById('div-results');
 let btnRes : HTMLElement | null = document.getElementById("btn-result");
@@ -46,7 +50,7 @@ btnRes?.addEventListener('click', () => {
     perceptron.arrayLayers[0].arrayNeurons[8].value = checkFour ? 1 : 0;
     perceptron.arrayLayers[0].arrayNeurons[9].value = checkDelay ? 1 : 0;
 
-    //запуск функции расчета
+    perceptron.countingHiddenLayers();
 
     for(let i : number = 0; i < arrayOutputs.length; i++){
         let resultNeuron : HTMLElement = document.createElement('p');
@@ -55,14 +59,14 @@ btnRes?.addEventListener('click', () => {
     }
     
 
-    // for(let i : number = 0; i < perceptron.arrayLayers.length; i++){
-    //     let str : string = "";
-    //     for(let j : number = 0; j < perceptron.arrayLayers[i].arrayNeurons.length; j++){
-    //         str += perceptron.arrayLayers[i].arrayNeurons[j].value + " ";
-    //         //console.log(perceptron.arrayLayers[i].arrayNeurons[j].value);
-    //     }
-    //     console.log(str + "\n");
-    // }
+    for(let i : number = 0; i < perceptron.arrayLayers.length; i++){
+        let str : string = "";
+        for(let j : number = 0; j < perceptron.arrayLayers[i].arrayNeurons.length; j++){
+            str += perceptron.arrayLayers[i].arrayNeurons[j].value + " ";
+            //console.log(perceptron.arrayLayers[i].arrayNeurons[j].value);
+        }
+        console.log(str + "\n");
+    }
 });
 
 

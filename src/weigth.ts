@@ -2,14 +2,13 @@ class Weigth{
     arrayWeigth : number[][];
 
     constructor(previousLayerLength: number, currentLayerLength : number){
-        console.log('Weigth : '+ previousLayerLength + " " + currentLayerLength);
-        this.arrayWeigth = new Array<Array<number>>(previousLayerLength);
-        for(let i : number = 0; i < previousLayerLength; i++){
-            this.arrayWeigth[i] = new Array<number>(currentLayerLength);
+        this.arrayWeigth = new Array<Array<number>>(currentLayerLength);
+        for(let i : number = 0; i < currentLayerLength; i++){
+            this.arrayWeigth[i] = new Array<number>(previousLayerLength);
         }
 
-        for(let i : number = 0; i < previousLayerLength; i++){
-            for(let j : number = 0; j < currentLayerLength; j++){
+        for(let i : number = 0; i < currentLayerLength; i++){
+            for(let j : number = 0; j < previousLayerLength; j++){
                 this.arrayWeigth[i][j] = Math.floor(Math.random() * 101)/ 100;
             }
         }
