@@ -3,6 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <title>Perceptron</title>
 </head>
 <body>
@@ -10,36 +13,40 @@
         <h1>Прогноз успеваемости студента</h1>
         <div id="div-form">
             <p>Курс обучения 
-                <select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>магистратура 1</option>
-                    <option>магистратура 2</option>
+                <select title="listCourse" id="listCourse">
+                    <option value="1" selected="selected">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">магистратура 1</option>
+                    <option value="7">магистратура 2</option>
                 </select>
             </p>
             <div>
                 <p>Процент посещаемости: </p>
-                <input type="text"/>
+                <input id="inputPercentVisit" type="number" min="0" max="100"/>
             </div>
             <div>
                 <p>Дисциплинированность: </p>
-                <select>
-                    <option>Отсутствие дисциплинарных взысканий</option>
-                    <option>Есть несколько дисциплинарных взысканий</option>
-                    <option>Иногда получает дисциплинарные взыскания</option>
-                    <option>Дисциплинарные взыскания получает часто</option>
+                <select title="listDiscipline" id="listDiscipline">
+                    <option value="4">Отсутствие дисциплинарных взысканий</option>
+                    <option value="3">Есть несколько дисциплинарных взысканий</option>
+                    <option value="2">Иногда получает дисциплинарные взыскания</option>
+                    <option value="1">Дисциплинарные взыскания получает часто</option>
                 </select>
             </div>
-            <p>Успеваемость по профильным предметам (%) <input type="text"/></p>
-            <p>Успеваемость по дополнительным предметам (%) <input type="text"/></p>
-            <p>Средняя оценка по прошлой сессии <input type="text"/></p>
-            <p>Наличие в прошлой сессии пересдач <input type="checkbox"/></p>
-            <p>Наличие в прошлой сессии троек <input type="checkbox"/></p>
-            <p>Наличие в прошлой сессии четверок <input type="checkbox"/></p>
-            <p>Наличие опозданий в сдачах проектов и курсовых <input type="checkbox"/></p>
+            <p>Успеваемость по профильным предметам (%) <input id="perProfSubject" type="number" min="0" max="100"/></p>
+            <p>Успеваемость по дополнительным предметам (%) <input id="perNoProfSubject" type="number" min="0" max="100"/></p>
+            <p>Средняя оценка по прошлой сессии <input id="markLastSession"/></p>
+            <p>Наличие в прошлой сессии пересдач <input id="haveRetakes" type="checkbox"/></p>
+            <p>Наличие в прошлой сессии троек <input id="haveThird" type="checkbox"/></p>
+            <p>Наличие в прошлой сессии четверок <input id="haveFour" type="checkbox"/></p>
+            <p>Наличие опозданий в сдачах проектов и курсовых <input id="haveDelay" type="checkbox"/></p>
+        </div>
+        <div>
+            <button id="btn-result">Сделать прогноз</button>
+            <button id="btn-study">Обучение сети</button>
         </div>
         <div id="div-results"></div>
     </div>
