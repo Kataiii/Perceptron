@@ -1,8 +1,4 @@
 const path = require('path');
-// const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.ts',

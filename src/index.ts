@@ -5,25 +5,25 @@ const arrayOutputs: string[] = ['Не сдаст - ',
                                 'Сдаст с тройками - ', 
                                 'Сдаст хорошо - ', 
                                 'Сдаст наотлично - '];
-let perceptron : Perceptron = new Perceptron([11, 9, 7, 5]);
+let perceptron : Perceptron = new Perceptron([10, 9, 7, 5]);
 
-for(let i : number = 0; i < perceptron.arrayLayers.length; i++){
-    let str : string = "";
-    for(let j : number = 0; j < perceptron.arrayLayers[i].arrayNeurons.length; j++){
-        str += perceptron.arrayLayers[i].arrayNeurons[j].value + " ";
-        //console.log(perceptron.arrayLayers[i].arrayNeurons[j].value);
-    }
-    console.log(str + "\n");
-}
+// for(let i : number = 0; i < perceptron.arrayLayers.length; i++){
+//     let str : string = "";
+//     for(let j : number = 0; j < perceptron.arrayLayers[i].arrayNeurons.length; j++){
+//         str += perceptron.arrayLayers[i].arrayNeurons[j].value + " ";
+//         //console.log(perceptron.arrayLayers[i].arrayNeurons[j].value);
+//     }
+//     console.log(str + "\n");
+// }
 
-for(let i : number = 0; i < perceptron.arrayWeigths.length; i++){
-    let str : string = "";
-    for(let j : number = 0; j < perceptron.arrayWeigths[i].arrayWeigth.length; j++){
-        str += perceptron.arrayWeigths[i].arrayWeigth[j] + " ";
-        //console.log(perceptron.arrayLayers[i].arrayNeurons[j].value);
-    }
-    console.log(str + "\n");
-}
+// for(let i : number = 0; i < perceptron.arrayWeigths.length; i++){
+//     let str : string = "";
+//     for(let j : number = 0; j < perceptron.arrayWeigths[i].arrayWeigth.length; j++){
+//         str += perceptron.arrayWeigths[i].arrayWeigth[j] + " ";
+//         //console.log(perceptron.arrayLayers[i].arrayNeurons[j].value);
+//     }
+//     console.log(str + "\n");
+// }
 
 let divResult : HTMLElement | null = document.getElementById('div-results');
 let btnRes : HTMLElement | null = document.getElementById("btn-result");
@@ -54,7 +54,7 @@ btnRes?.addEventListener('click', () => {
 
     for(let i : number = 0; i < arrayOutputs.length; i++){
         let resultNeuron : HTMLElement = document.createElement('p');
-        resultNeuron.innerHTML = arrayOutputs[i] + (perceptron.arrayLayers[perceptron.arrayLayers.length - 1].arrayNeurons[0].value * 100) + '%';
+        resultNeuron.innerHTML = arrayOutputs[i] + (perceptron.arrayLayers[perceptron.arrayLayers.length - 1].arrayNeurons[i].value * 100) + '%';
         divResult?.appendChild(resultNeuron);
     }
     
