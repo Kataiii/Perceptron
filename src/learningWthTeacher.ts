@@ -49,10 +49,22 @@ const mainFunction = (perceptron : Perceptron) => {
         [0, 0, 1, 0]
     ]; 
 
+    let dataNumbers : number[][] = new Array<Array<number>>(20);
+    for(let i : number = 0; i < dataNumbers.length; i++){
+        dataNumbers[i] = new Array<number>(data[i].length);
+    }
+
+    for(let i : number = 0; i < data.length; i++){
+        for(let j : number = 0; j < data[i].length; j++){
+            dataNumbers[i][j] = Number(data[i][j]);
+        }
+    }
+
     for(let i : number = 0; i < 10001; i++){
         console.log('Epoch ' + i);
         for(let j : number = 0; j < data.length; j++){
             //происходит обучение, нужно передавать data и uotput
+            perceptron.learningWithTeacher(dataNumbers[j], dataOutput[j]);
         }
         //Должен быть вывод, но возможно это не то
         for(let j : number = 0; j < data.length; j++){
@@ -63,7 +75,7 @@ const mainFunction = (perceptron : Perceptron) => {
             console.log(str + "\n");
         }
         //Создать функцию подсчета ошибки 
-        console.log('Error ' + perceptron.calculateError(data, dataOutput));
+        console.log('Error ' + perceptron.calculateError(dataNumbers, dataOutput));
 
         if(i % 100 == 0){
             let isContinue = confirm('Продолжить обучение?');
