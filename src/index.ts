@@ -1,4 +1,5 @@
 import Perceptron from "./perceptron";
+import mainFunction from "./learningWthTeacher";
 
 const arrayOutputs: string[] = ['Не сдаст - ', 
                                 'Сдаст с пересдачами - ' ,
@@ -72,5 +73,5 @@ btnRes?.addEventListener('click', () => {
 
 let btnStudy : HTMLElement | null = document.getElementById('btn-study');
 btnStudy?.addEventListener('click', () => {
-
+    mainFunction(perceptron);
 })

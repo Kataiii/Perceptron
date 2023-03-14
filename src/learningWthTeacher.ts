@@ -73,3 +73,5 @@ const mainFunction = (perceptron : Perceptron) => {
         }
     }
 }
+
+export default mainFunction;
