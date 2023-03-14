@@ -4,6 +4,7 @@ import Weigth from "./weigth";
 
 class Layer{
     arrayNeurons : Neuron[] = [];
+    additionalNeuron : Neuron = new Neuron();
 
     constructor(countNeurons : number){
         this.arrayNeurons = new Array<Neuron>(countNeurons);
