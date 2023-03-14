@@ -22,6 +22,29 @@ class Perceptron{
             this.arrayLayers[i].countingNeuronsInLayer(this.arrayLayers[i - 1],this.arrayWeigths[i - 1]);
         }
     }
+
+    calculateError = (arrayData : number[][], correctOutputData : number[][]) => {
+        let error : number = 0;
+        let arrayRes : number[] = [];
+        for(let i : number = 0; i < arrayData.length; i++){
+
+            for(let j : number = 0; j < arrayData[i].length; j++){
+                this.arrayLayers[i].arrayNeurons[j].value = arrayData[i][j];
+            }
+
+            this.countingHiddenLayers();
+
+            for(let j : number = 0; j < this.arrayLayers[this.arrayLayers.length - 1].arrayNeurons.length; j++){
+                arrayRes.push(this.arrayLayers[this.arrayLayers.length - 1].arrayNeurons[j].value);
+
+                if(correctOutputData[i][j] != arrayRes[j]){
+                    error ++;
+                }
+            }
+        }
+
+        return error / correctOutputData.length;
+    }
 }
 
 export default Perceptron;

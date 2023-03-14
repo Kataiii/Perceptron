@@ -63,7 +63,7 @@ const mainFunction = (perceptron : Perceptron) => {
             console.log(str + "\n");
         }
         //Создать функцию подсчета ошибки 
-        console.log('Error ');
+        console.log('Error ' + perceptron.calculateError(data, dataOutput));
 
         if(i % 100 == 0){
             let isContinue = confirm('Продолжить обучение?');
