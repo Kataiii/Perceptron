@@ -1,5 +1,5 @@
 import Layer from "./layer";
-import Neuron from "./neuron";
+import {Neuron, copyNeuron} from "./neuron";
 import Weigth from "./weigth";
 
 
@@ -20,9 +20,12 @@ class Perceptron{
     }
 
     countingHiddenLayers = () => {
+        //console.log(this.arrayWeigths);
         for(let i : number = 1; i < this.arrayLayers.length; i++){
             this.arrayLayers[i].countingNeuronsInLayer(this.arrayLayers[i - 1],this.arrayWeigths[i - 1]);
         }
+        // console.log('--------------');
+        // console.log(this.arrayWeigths);
     }
 
     calculateError = (arrayData : number[][], correctOutputData : number[][]) => {
@@ -49,30 +52,37 @@ class Perceptron{
     }
 
     learningWithTeacher = (arrayData : number[], correctOutputData : number[]) => {
-
+        console.log('aaaaaaaaaaaaa');
+        console.log(this.arrayWeigths);
         for(let i : number = 0; i < arrayData.length; i++){
             this.arrayLayers[0].arrayNeurons[i].value = arrayData[i];
         }
 
+        console.log(this.arrayWeigths);
+
         this.countingHiddenLayers();
+
+        console.log(this.arrayWeigths);
+        console.log('--------------');
 
         let arrayNeurons : Neuron[] = new Array<Neuron>(this.arrayLayers[this.arrayLayers.length - 1].arrayNeurons.length);
         for(let i : number = 0; i < arrayNeurons.length; i++){
+            arrayNeurons[i] = copyNeuron(this.arrayLayers[this.arrayLayers.length - 1].arrayNeurons[i]);
             arrayNeurons[i].error = -(correctOutputData[i] - arrayNeurons[i].value) * 
                                     arrayNeurons[i].value * (1 - arrayNeurons[i].value);
         }
 
         //Расчет внутренних слоев
         for(let i : number = this.arrayWeigths.length; i > 0; i--){
-            for(let j : number = 0; this.arrayWeigths[i - 1].arrayWeigth.length; j++){
-                for(let k : number = 0; this.arrayWeigths[i - 1].arrayWeigth[j].length; k++){
-                    this.arrayWeigths[i - 1].deltaArrayWeigth[j][k] = this.trainingSpeed * 
+            for(let j : number = 0; j < this.arrayWeigths[i - 1].arrayWeigth.length; j++){
+                for(let k : number = 0; k < this.arrayWeigths[i - 1].arrayWeigth[j].length; k++){
+                    this.arrayWeigths[i - 1].deltaArrayWeigth[j][k] = this.trainingSpeed
                                                                     this.arrayLayers[i - 1].arrayNeurons[k].value * arrayNeurons[j].error;
                 }
                 this.arrayWeigths[i - 1].deltaAdditionalWeigth[j] = this.trainingSpeed * 
                                                                     this.arrayLayers[i - 1].additionalNeuron.value * arrayNeurons[j].error;
             }
-
+            
             if(i - 1 != 0){
                 arrayNeurons = this.arrayLayers[i - 1].arrayNeurons;
                 let arrayPreviousNeurons : Neuron[] = this.arrayLayers[i].arrayNeurons;

@@ -18,4 +18,12 @@ class Neuron {
     }
 }
 
-export default Neuron;
+const copyNeuron = (neuron : Neuron) =>{
+    let newNeuron : Neuron = new Neuron();
+    newNeuron.value = neuron.value;
+    newNeuron.value = neuron.value;
+
+    return newNeuron;
+}
+
+export {Neuron, copyNeuron};
