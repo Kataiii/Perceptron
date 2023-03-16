@@ -26,44 +26,71 @@ const mainFunction = (perceptron : Perceptron) => {
     data[18] = ['7', '15', '2', '16', '30', '3.4', '0', '1', '1', '1'];//пересдач
     data[19] = ['1', '20', '2', '18', '41', '3.7', '1', '0', '1', '1'];//пересдач
 
+    data[20] = ['2', '0.65', '1', '10', '12', '3.0', '0', '1', '1', '1'];//не сдаст
+    data[21] = ['3', '1', '3', '15', '2', '3.1', '1', '0', '1', '1'];//не сдаст
+    data[22] = ['5', '4', '2', '5', '8', '3.3', '1', '1', '1', '1'];//не сдаст
+    data[23] = ['4', '2', '2', '6', '14', '3.2', '0', '1', '1', '1'];//не сдаст
+    data[24] = ['2', '1', '2', '14', '13', '3.1', '1', '0', '1', '1'];//не сдаст
+
     let dataOutput : number[][] = [
-        [1, 0, 0, 0],
-        [1, 0, 0, 0],
-        [1, 0, 0, 0],
-        [1, 0, 0, 0],
-        [1, 0, 0, 0],
-        [0, 1, 0, 0],
-        [0, 1, 0, 0],
-        [0, 1, 0, 0],
-        [0, 1, 0, 0],
-        [0, 1, 0, 0],
-        [0, 0, 1, 0],
-        [0, 0, 1, 0],
-        [0, 0, 1, 0],
-        [0, 0, 1, 0],
-        [0, 0, 1, 0],
-        [0, 0, 1, 0],
-        [0, 0, 1, 0],
-        [0, 0, 1, 0],
-        [0, 0, 1, 0],
-        [0, 0, 1, 0]
+        [1, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0],
+        [0, 1, 0, 0, 0],
+        [0, 1, 0, 0, 0],
+        [0, 1, 0, 0, 0],
+        [0, 1, 0, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 0, 1, 0],
+        [0, 0, 0, 1, 0],
+        [0, 0, 0, 1, 0],
+        [0, 0, 0, 1, 0],
+        [0, 0, 0, 1, 0],
+        [0, 0, 0, 0, 1],
+        [0, 0, 0, 0, 1],
+        [0, 0, 0, 0, 1],
+        [0, 0, 0, 0, 1],
+        [0, 0, 0, 0, 1]
     ]; 
+
+    let dataNumbers : number[][] = new Array<Array<number>>(25);
+    for(let i : number = 0; i < dataNumbers.length; i++){
+        dataNumbers[i] = new Array<number>(data[i].length);
+    }
+
+    for(let i : number = 0; i < data.length; i++){
+        for(let j : number = 0; j < data[i].length; j++){
+            dataNumbers[i][j] = Number(data[i][j]);
+        }
+    }
 
     for(let i : number = 0; i < 10001; i++){
         console.log('Epoch ' + i);
         for(let j : number = 0; j < data.length; j++){
             //происходит обучение, нужно передавать data и uotput
+            console.log(perceptron);
+            perceptron.learningWithTeacher(dataNumbers[j], dataOutput[j]);
         }
         //Должен быть вывод, но возможно это не то
         for(let j : number = 0; j < data.length; j++){
             let str : string = "";
-            for(let k : number = 0; k < perceptron.arrayLayers[j].arrayNeurons.length; k++){
+            for(let k : number = 0; k < perceptron.arrayLayers[perceptron.arrayLayers.length - 1].arrayNeurons.length; k++){
+                //console.log(k);
+                //console.log(perceptron.arrayLayers[perceptron.arrayLayers.length - 1].arrayNeurons[k].value);
                 str += perceptron.arrayLayers[perceptron.arrayLayers.length - 1].arrayNeurons[k].value + " ";
             }
             console.log(str + "\n");
         }
+        ////console.log(perceptron);
         //Создать функцию подсчета ошибки 
-        console.log('Error ');
+        console.log('Error ' + perceptron.calculateError(dataNumbers, dataOutput));
 
         if(i % 100 == 0){
             let isContinue = confirm('Продолжить обучение?');

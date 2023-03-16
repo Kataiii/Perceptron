@@ -1,7 +1,8 @@
 import Layer from "./layer";
 
 class Neuron {
-    value : number = 0;
+    value : number = 1;
+    error : number = 0;
 
     //TODO добавить кол-во нейроннов в слое разделить на кол-во нейронов * 2
     adder = (previousLayer: Layer, arrayWeigth : number[]) : number => {
@@ -13,8 +14,16 @@ class Neuron {
     }
 
     activationFunction = (previousLayer: Layer, arrayWeigth : number[]) : number => {
-        return 1 / (1 + Math.pow(Math.E, -this.adder(previousLayer, arrayWeigth)));
+        return 1 / (1 + Math.pow(Math.E, (-this.adder(previousLayer, arrayWeigth))));
     }
 }
 
-export default Neuron;
+const copyNeuron = (neuron : Neuron) =>{
+    let newNeuron : Neuron = new Neuron();
+    newNeuron.value = neuron.value;
+    newNeuron.value = neuron.value;
+
+    return newNeuron;
+}
+
+export {Neuron, copyNeuron};

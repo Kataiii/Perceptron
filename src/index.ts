@@ -1,30 +1,37 @@
 import Perceptron from "./perceptron";
 import mainFunction from "./learningWthTeacher";
 
+// let array: number[][] = new Array<Array<number>>(10);
+
+// console.log(array);
+// for(let i : number = 0; i < array.length; i++){
+//     array[i] = new Array<number>(6);
+//     console.log('array i');
+//     console.log(array[i]);
+//     for(let j : number = 0; j < array[i].length; j++){
+//         array[i][j] = ((Math.floor(Math.random() * (2001 + 1)) + 2001) - 1000)/1000;
+
+//         console.log(array[i][j]);
+//     }
+// }
+// console.log(array);
+
 const arrayOutputs: string[] = ['Не сдаст - ', 
                                 'Сдаст с пересдачами - ' ,
                                 'Сдаст с тройками - ', 
                                 'Сдаст хорошо - ', 
                                 'Сдаст наотлично - '];
 let perceptron : Perceptron = new Perceptron([10, 9, 7, 5]);
+console.log(perceptron);
+// console.log('-----------');
 
-// for(let i : number = 0; i < perceptron.arrayLayers.length; i++){
-//     let str : string = "";
-//     for(let j : number = 0; j < perceptron.arrayLayers[i].arrayNeurons.length; j++){
-//         str += perceptron.arrayLayers[i].arrayNeurons[j].value + " ";
-//         //console.log(perceptron.arrayLayers[i].arrayNeurons[j].value);
-//     }
-//     console.log(str + "\n");
-// }
-
-// for(let i : number = 0; i < perceptron.arrayWeigths.length; i++){
-//     let str : string = "";
-//     for(let j : number = 0; j < perceptron.arrayWeigths[i].arrayWeigth.length; j++){
-//         str += perceptron.arrayWeigths[i].arrayWeigth[j] + " ";
-//         //console.log(perceptron.arrayLayers[i].arrayNeurons[j].value);
-//     }
-//     console.log(str + "\n");
-// }
+for(let i : number = 0; i < perceptron.arrayLayers.length; i++){
+    let str : string = "";
+    for(let j : number = 0; j < perceptron.arrayLayers[i].arrayNeurons.length; j++){
+        str += perceptron.arrayLayers[i].arrayNeurons[j].value + " ";
+    }
+    console.log(str + "\n");
+}
 
 let divResult : HTMLElement | null = document.getElementById('div-results');
 let btnRes : HTMLElement | null = document.getElementById("btn-result");
@@ -53,6 +60,7 @@ btnRes?.addEventListener('click', () => {
 
     perceptron.countingHiddenLayers();
 
+    divResult?.replaceChildren();
     for(let i : number = 0; i < arrayOutputs.length; i++){
         let resultNeuron : HTMLElement = document.createElement('p');
         resultNeuron.innerHTML = arrayOutputs[i] + (perceptron.arrayLayers[perceptron.arrayLayers.length - 1].arrayNeurons[i].value * 100) + '%';
@@ -60,18 +68,20 @@ btnRes?.addEventListener('click', () => {
     }
     
 
-    for(let i : number = 0; i < perceptron.arrayLayers.length; i++){
-        let str : string = "";
-        for(let j : number = 0; j < perceptron.arrayLayers[i].arrayNeurons.length; j++){
-            str += perceptron.arrayLayers[i].arrayNeurons[j].value + " ";
-            //console.log(perceptron.arrayLayers[i].arrayNeurons[j].value);
-        }
-        console.log(str + "\n");
-    }
+    // for(let i : number = 0; i < perceptron.arrayLayers.length; i++){
+    //     let str : string = "";
+    //     for(let j : number = 0; j < perceptron.arrayLayers[i].arrayNeurons.length; j++){
+    //         str += perceptron.arrayLayers[i].arrayNeurons[j].value + " ";
+    //         //console.log(perceptron.arrayLayers[i].arrayNeurons[j].value);
+    //     }
+    //     console.log(str + "\n");
+    // }
 });
 
 
 let btnStudy : HTMLElement | null = document.getElementById('btn-study');
 btnStudy?.addEventListener('click', () => {
+    console.log(perceptron);
+    console.log('bbbbbbbbb');
     mainFunction(perceptron);
 })
