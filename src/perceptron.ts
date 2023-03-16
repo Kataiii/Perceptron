@@ -47,23 +47,18 @@ class Perceptron{
                 }
             }
         }
-
-        return error / correctOutputData.length;
+        console.log(error);
+        console.log(correctOutputData[0].length);
+        console.log(correctOutputData[0].length * correctOutputData.length);
+        return error / (correctOutputData[0].length * correctOutputData.length);
     }
 
     learningWithTeacher = (arrayData : number[], correctOutputData : number[]) => {
-        console.log('aaaaaaaaaaaaa');
-        console.log(this.arrayWeigths);
         for(let i : number = 0; i < arrayData.length; i++){
             this.arrayLayers[0].arrayNeurons[i].value = arrayData[i];
         }
 
-        console.log(this.arrayWeigths);
-
         this.countingHiddenLayers();
-
-        console.log(this.arrayWeigths);
-        console.log('--------------');
 
         let arrayNeurons : Neuron[] = new Array<Neuron>(this.arrayLayers[this.arrayLayers.length - 1].arrayNeurons.length);
         for(let i : number = 0; i < arrayNeurons.length; i++){
