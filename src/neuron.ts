@@ -1,8 +1,13 @@
 import Layer from "./layer";
 
 class Neuron {
-    value : number = 1;
-    error : number = 0;
+    value : number;
+    error : number;
+
+    constructor(value : number, error : number){
+        this.value = value;
+        this.error = error;
+    }
 
     //TODO добавить кол-во нейроннов в слое разделить на кол-во нейронов * 2
     adder = (previousLayer: Layer, arrayWeigth : number[]) : number => {
@@ -19,10 +24,7 @@ class Neuron {
 }
 
 const copyNeuron = (neuron : Neuron) =>{
-    let newNeuron : Neuron = new Neuron();
-    newNeuron.value = neuron.value;
-    newNeuron.value = neuron.value;
-
+    let newNeuron : Neuron = new Neuron(neuron.value, neuron.value);
     return newNeuron;
 }
 

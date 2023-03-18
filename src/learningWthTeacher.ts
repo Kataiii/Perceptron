@@ -32,6 +32,21 @@ const mainFunction = (perceptron : Perceptron) => {
     data[23] = ['4', '2', '2', '6', '14', '3.2', '0', '1', '1', '1'];//не сдаст
     data[24] = ['2', '1', '2', '14', '13', '3.1', '1', '0', '1', '1'];//не сдаст
 
+    for(let i : number = 0; i < data.length; i++){
+        data[i][0] = String(Number(data[i][0]) / 7);
+        data[i][1] = String(Number(data[i][1]) /100);
+        data[i][2] = String(Number(data[i][2]) / 4);
+        data[i][3] = String(Number(data[i][3]) / 100);
+        data[i][4] = String(Number(data[i][4]) / 100);
+        data[i][5] = String(Number(data[i][5]) / 5);
+        data[i][6] = String(data[i][6] == "1" ? 1 : 0);
+        data[i][7] = String(data[i][7] == "1" ? 1 : 0);
+        data[i][8] = String(data[i][8] == "1" ? 1 : 0);
+        data[i][9] = String(data[i][9] == "1" ? 1 : 0);
+    }
+
+    console.log(data);
+
     let dataOutput : number[][] = [
         [1, 0, 0, 0, 0],
         [1, 0, 0, 0, 0],
@@ -60,22 +75,28 @@ const mainFunction = (perceptron : Perceptron) => {
         [0, 0, 0, 0, 1]
     ]; 
 
-    let dataNumbers : number[][] = new Array<Array<number>>(25);
+    let dataNumbers : number[][] = new Array<Array<number>>(data.length);
+    dataNumbers.fill(new Array<number>(data[0].length));
     for(let i : number = 0; i < dataNumbers.length; i++){
-        dataNumbers[i] = new Array<number>(data[i].length);
+        //dataNumbers[i] = new Array<number>(data[i].length);
+        dataNumbers[i].fill(0);
+        dataNumbers[i] = dataNumbers[i].map((item, index) => item = Number(data[i][index]));
     }
 
-    for(let i : number = 0; i < data.length; i++){
-        for(let j : number = 0; j < data[i].length; j++){
-            dataNumbers[i][j] = Number(data[i][j]);
-        }
-    }
+    // console.log('dataNumbers');
+    // console.log(dataNumbers);
+
+    // for(let i : number = 0; i < data.length; i++){
+    //     for(let j : number = 0; j < data[i].length; j++){
+    //         dataNumbers[i][j] = Number(data[i][j]);
+    //     }
+    // }
 
     for(let i : number = 0; i < 10001; i++){
         console.log('Epoch ' + i);
         for(let j : number = 0; j < data.length; j++){
             //происходит обучение, нужно передавать data и uotput
-            console.log(perceptron);
+            //console.log(perceptron);
             perceptron.learningWithTeacher(dataNumbers[j], dataOutput[j]);
         }
         //Должен быть вывод, но возможно это не то

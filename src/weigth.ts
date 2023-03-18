@@ -46,6 +46,7 @@ class Weigth{
         }
 
         this.additionalWeigth = this.additionalWeigth.map((item, index) => item = item - this.deltaAdditionalWeigth[index]);
+        //console.log(this.deltaAdditionalWeigth);
         this.deltaAdditionalWeigth.fill(0);
     }
 }
