@@ -45,7 +45,7 @@ const mainFunction = (perceptron : Perceptron) => {
         data[i][9] = String(data[i][9] == "1" ? 1 : 0);
     }
 
-    console.log(data);
+    //console.log(data);
 
     let dataOutput : number[][] = [
         [1, 0, 0, 0, 0],
