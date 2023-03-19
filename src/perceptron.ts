@@ -2,33 +2,55 @@ import Layer from "./layer";
 import { Neuron, copyNeuron } from "./neuron";
 import Weigth from "./weigth";
 
+type PerceptronContructorArgs = Required<Partial<Pick<Perceptron, 'arrayLayers' | 'trainingSpeed' | 'arrayWeigths'>>>;
 
 class Perceptron {
     arrayLayers: Layer[] = [];
     arrayWeigths: Weigth[] = [];
     trainingSpeed: number = 0.1;
 
-    constructor(countNeuronsInLayers: number[]) {
-        for (let i: number = 0; i < countNeuronsInLayers.length; i++) {
-            this.arrayLayers.push(new Layer(countNeuronsInLayers[i]));
-        }
 
-        for (let i: number = 0; i < countNeuronsInLayers.length - 1; i++) {
-            this.arrayWeigths.push(new Weigth(this.arrayLayers[i].arrayNeurons.length,
-                this.arrayLayers[i + 1].arrayNeurons.length));
-        }
+    constructor(args: PerceptronContructorArgs) {
+        this.arrayLayers = Array.from(args.arrayLayers);
+        this.arrayWeigths = Array.from(args.arrayWeigths);
+        this.trainingSpeed = args.trainingSpeed;
     }
 
-    countingHiddenLayers = () => {
+    static fromCountNeuronsInLayers(count: number[]) {
+        const layers: Layer[] = Array.from(count, (_, index) => new Layer(count[index]));
+        const weigths: Weigth[] = [];
+        for (let i: number = 0; i < count.length - 1; i++) {
+            weigths.push(new Weigth(
+                layers[i].arrayNeurons.length,
+                layers[i + 1].arrayNeurons.length)
+            );
+        }
+        return new Perceptron({arrayLayers: layers, arrayWeigths: weigths, trainingSpeed: 0.1})
+    }
+
+    private copyWith(fields: Partial<Perceptron>) {
+        return new Perceptron({
+            arrayLayers: fields.arrayLayers ?? this.arrayLayers,
+            arrayWeigths: fields.arrayWeigths ?? this.arrayWeigths,
+            trainingSpeed: fields.trainingSpeed ?? this.trainingSpeed
+        });
+    }
+
+    public countingHiddenLayers() {
         //console.log(this.arrayWeigths);
+        let str : string = '';;
         for (let i: number = 1; i < this.arrayLayers.length; i++) {
             this.arrayLayers[i].countingNeuronsInLayer(this.arrayLayers[i - 1], this.arrayWeigths[i - 1]);
         }
+        for(let i: number = 1; i < this.arrayLayers[3].arrayNeurons.length; i++){
+            str += this.arrayLayers[3].arrayNeurons[i].value + ' ';
+        }
+        console.log(str);
         // console.log('--------------');
         // console.log(this.arrayWeigths);
     }
 
-    calculateError = (arrayData: number[][], correctOutputData: number[][]) => {
+    calculateError(arrayData: number[][], correctOutputData: number[][]) {
         let error: number = 0;
         let arrayRes: number[] = [];
         for (let i: number = 0; i < arrayData.length; i++) {
@@ -50,25 +72,16 @@ class Perceptron {
         return error / (correctOutputData[0].length * correctOutputData.length);
     }
 
-    learningWithTeacher = (arrayData: number[], correctOutputData: number[]) => {
-    
-        const oldLayer: Layer = {...this.arrayLayers[0]};
-        const newLayer: Layer = {...oldLayer, arrayNeurons: oldLayer.arrayNeurons.map((item, index) => new Neuron(arrayData[index], item.error))}
-        // this.arrayLayers[0] === .arrayNeurons = this.arrayLayers[0].arrayNeurons
-        //     .map((item, index) => new Neuron(arrayData[index], item.error));
-    
+    learningWithTeacher(arrayData: number[], correctOutputData: number[]) {
+
+        const oldLayer: Layer = { ...this.arrayLayers[0] };
+        const newLayer: Layer = { ...oldLayer, arrayNeurons: oldLayer.arrayNeurons.map((item, index) => new Neuron(arrayData[index], item.error)) }
         this.arrayLayers[0] = newLayer;
-
-        // .arrayNeurons = this.arrayLayers[0].arrayNeurons.map(
-        //             (item, index) => new Neuron(arrayData[index], item.error));
-        // for(let i : number = 0; i < arrayData.length; i++){
-        //     this.arrayLayers[0].arrayNeurons[i].value = arrayData[i];
-        // }
-        console.log('--------------data--------------', arrayData);
-        console.log('--------------1--------------', this.arrayLayers[0].arrayNeurons);
-        console.log('--------------perceptron--------------', this.arrayLayers[0]);
+        //console.log('--------------data--------------', arrayData);
+        // console.log('--------------1--------------', this.arrayLayers[0].arrayNeurons);
+        // console.log('--------------perceptron--------------', this);
         this.countingHiddenLayers();
-
+        //console.log('--------------Layers--------------', this.arrayLayers[3]);
 
         let arrayNeurons: Neuron[] = new Array<Neuron>(this.arrayLayers[this.arrayLayers.length - 1].arrayNeurons.length);
         for (let i: number = 0; i < arrayNeurons.length; i++) {
@@ -77,7 +90,7 @@ class Perceptron {
                 arrayNeurons[i].value * (1 - arrayNeurons[i].value);
         }
 
-        console.log(arrayNeurons[arrayNeurons.length - 1].error);
+        //console.log(arrayNeurons[arrayNeurons.length - 1].error);
 
 
         //Расчет внутренних слоев
@@ -111,3 +124,4 @@ class Perceptron {
 }
 
 export default Perceptron;
+

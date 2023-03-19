@@ -5,7 +5,7 @@ class Weigth{
     deltaAdditionalWeigth : number[];
 
     constructor(previousLayerLength: number, currentLayerLength : number){
-        const createIitialArr = () => Array.from(Array(previousLayerLength), (_) => Math.floor(Math.random() * (2001 + 1)));
+        const createIitialArr = () => Array.from(Array(previousLayerLength), (_) => Math.random() * (1 + 1));
         this.arrayWeigth = Array.from(Array(currentLayerLength), _ => createIitialArr());
         // this.arrayWeigth.fill(new Array<number>(previousLayerLength));
         // for(let i : number = 0; i < currentLayerLength; i++){

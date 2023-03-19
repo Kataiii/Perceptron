@@ -21,7 +21,7 @@ const arrayOutputs: string[] = ['Не сдаст - ',
                                 'Сдаст с тройками - ', 
                                 'Сдаст хорошо - ', 
                                 'Сдаст наотлично - '];
-let perceptron : Perceptron = new Perceptron([10, 9, 7, 5]);
+let perceptron : Perceptron = Perceptron.fromCountNeuronsInLayers([10, 9, 7, 5]);
 console.log(perceptron);
 // console.log('-----------');
 

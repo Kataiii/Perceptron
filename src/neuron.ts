@@ -19,7 +19,8 @@ class Neuron {
     }
 
     activationFunction = (previousLayer: Layer, arrayWeigth : number[]) : number => {
-        return 1 / (1 + Math.pow(Math.E, (-this.adder(previousLayer, arrayWeigth))));
+        let sum : number = this.adder(previousLayer, arrayWeigth);
+        return 1 / (1 + Math.pow(Math.E, (-sum)));
     }
 }
 

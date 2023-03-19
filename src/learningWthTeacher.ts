@@ -97,18 +97,19 @@ const mainFunction = (perceptron : Perceptron) => {
         for(let j : number = 0; j < data.length; j++){
             //происходит обучение, нужно передавать data и uotput
             //console.log(perceptron);
+            console.log('--------------CoutingHidenLayers--------------');
             perceptron.learningWithTeacher(dataNumbers[j], dataOutput[j]);
         }
         //Должен быть вывод, но возможно это не то
-        for(let j : number = 0; j < data.length; j++){
-            let str : string = "";
-            for(let k : number = 0; k < perceptron.arrayLayers[perceptron.arrayLayers.length - 1].arrayNeurons.length; k++){
-                //console.log(k);
-                //console.log(perceptron.arrayLayers[perceptron.arrayLayers.length - 1].arrayNeurons[k].value);
-                str += perceptron.arrayLayers[perceptron.arrayLayers.length - 1].arrayNeurons[k].value + " ";
-            }
-            console.log(str + "\n");
-        }
+        // for(let j : number = 0; j < data.length; j++){
+        //     let str : string = "";
+        //     for(let k : number = 0; k < perceptron.arrayLayers[perceptron.arrayLayers.length - 1].arrayNeurons.length; k++){
+        //         //console.log(k);
+        //         //console.log(perceptron.arrayLayers[perceptron.arrayLayers.length - 1].arrayNeurons[k].value);
+        //         str += perceptron.arrayLayers[perceptron.arrayLayers.length - 1].arrayNeurons[k].value + " ";
+        //     }
+        //     console.log(str + "\n");
+        // }
         ////console.log(perceptron);
         //Создать функцию подсчета ошибки 
         console.log('Error ' + perceptron.calculateError(dataNumbers, dataOutput));
